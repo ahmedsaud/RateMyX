@@ -1,0 +1,20 @@
+{
+  "name": "RateMyX",
+  "version": "1.0.0",
+  "description": "MEAN Stack Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flextry/RateMyX.git"
+  },
+  "author": "Martin Nikolov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flextry/RateMyX/issues"
+  },
+  "homepage": "https://github.com/flextry/RateMyX"
+}
