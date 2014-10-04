@@ -2,16 +2,20 @@ var auth = require('./auth'),
     controllers = require('../controllers');
 
 module.exports = function (app) {
-    app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
+  //  app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllCategories);
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
-//    app.get('/api/courses', controllers.courses.getAllCourses);
-//    app.get('/api/courses/:id', controllers.courses.getCourseById);
-//
-//    app.get('/partials/:partialArea/:partialName', function (req, res) {
-//        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
-//    });
+    app.get('/api/votes', controllers.votes.getAllVotes);
+    app.post('/api/votes', auth.isAuthenticated, controllers.votes.createVote);
+    app.get('/api/votes/:id', auth.isAuthenticated, controllers.votes.getVoteById);
+
+    app.get('/api/categories', controllers.categories.getAllCategories);
+    app.get('/api/category/:name', controllers.votes.getVotesByCategoryName);
+
+    app.get('/partials/:partialArea/:partialName', function (req, res) {
+        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
+    });
 
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);

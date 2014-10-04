@@ -9,11 +9,13 @@
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
-                | {{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
+                | Hello, {{ identity.currentUser.username }}
                 span.caret
             ul.dropdown-menu
                 li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/users") Users
+                    a(href="#/admin/users") Create category
+                li(ng-show="identity.isAuthenticated()")
+                    a(href="#/profile") My Votes
                 li(ng-show="identity.isAuthenticated()")
                     a(href="#/profile") Profile
                 li

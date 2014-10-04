@@ -16,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/flextry/RateMyX/issues"
   },
-  "homepage": "https://github.com/flextry/RateMyX"
+  "homepage": "https://github.com/flextry/RateMyX",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "cookie-parser": "^1.3.3",
+    "express": "^4.9.5",
+    "express-session": "^1.8.2",
+    "jade": "^1.7.0",
+    "mongoose": "^3.8.17",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "stylus": "^0.49.1"
+  }
 }

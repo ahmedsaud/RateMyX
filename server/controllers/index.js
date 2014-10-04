@@ -1,5 +1,9 @@
-var usersController = require('usersController');
+var UsersController = require('../controllers/UsersController'),
+    VoteController = require('../controllers/VoteController'),
+    CategoryController = require('../controllers/CategoryController');
 
 module.exports = {
-    users: usersController
+    users: UsersController,
+    votes: VoteController,
+    categories: CategoryController
 };

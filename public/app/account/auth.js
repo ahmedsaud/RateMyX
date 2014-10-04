@@ -72,4 +72,4 @@ app.factory('auth', function ($http, $q, identity, UsersResource) {
             }
         }
     }
-})
+});

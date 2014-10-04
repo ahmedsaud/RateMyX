@@ -10,8 +10,9 @@ module.exports = function (app, config) {
     app.set('views', config.rootPath + '/server/views');
 
     app.use(cookieParser());
-    app.use(bodyParser());
-    app.use(session({secret: 'SECRET_SESSION'}));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(session({ secret: 'SECRET_MAGIC', resave: false, saveUninitialized: true}));
     app.use(stylus.middleware(
         {
             src: config.rootPath + '/public',

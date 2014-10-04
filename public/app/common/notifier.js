@@ -1,10 +1,10 @@
-app.factory('notifier', function(toastr) {
+app.factory('notifier', function (toastr) {
     return {
-        success: function(msg) {
+        success: function (msg) {
             toastr.success(msg);
         },
-        error: function(msg) {
+        error: function (msg) {
             toastr.error(msg);
         }
     }
-})
+});

@@ -1,13 +1,13 @@
-.container
-    .jumbotron
-        h1 Telerik Academy Courses
-        h2 Best trainings in the world
+.container(ng-repeat="(key, value) in categories")
     .row
+        .col-md-6.big-text
+            strong
+                | {{ key }}
         .col-md-6
-            .panel.panel-info
-                .panel-heading.text-center Featured
-                .panel-body(ng-include="'/partials/main/featured-courses'")
-        .col-md-6
-            .panel.panel-info
-                .panel-heading.text-center New
-                .panel-body(ng-include="'/partials/main/new-courses'")
+            a.btn.btn-default.pull-right(href="#/categories/{{ key | lowercase }}")
+                | See all
+    .row
+        .col-md-3.text-center(ng-repeat="vote in value | limitTo: 4")
+            .image-container
+                a(href="#/votes/{{ vote._id }}")
+                   img(ng-src="{{ vote.pictureUrl }}")

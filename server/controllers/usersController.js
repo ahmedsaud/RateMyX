@@ -10,6 +10,8 @@ module.exports = {
         User.create(newUserData, function (error, user) {
             if (error) {
                 console.log('Failed to register new user: ' + error);
+                res.status(400);
+                res.send({message: 'Failed to register new user'});
                 return;
             }
 
@@ -26,7 +28,7 @@ module.exports = {
     updateUser: function (req, res) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var updatedUserData = req.body;
-            if (updatedUserData.password && updatedUserData.password.length > 0) {
+            if (updatedUserData.password && updatedUserData.password.length > 5) {
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
             }
@@ -38,14 +40,5 @@ module.exports = {
         else {
             res.send({reason: 'You do not have permissions!'})
         }
-    },
-    getAllUsers: function (req, res) {
-        User.find({}).exec(function (error, collection) {
-            if (error) {
-                console.log('Users could not be loaded: ' + error);
-            }
-
-            res.send(collection);
-        })
     }
 };
