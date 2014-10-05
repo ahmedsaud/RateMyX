@@ -20,13 +20,3 @@ module.exports = function (config) {
 
     models.user.seedInitialUsers();
 };
-
-// For development
-function clearDatabase() {
-    models.user.removeAll();
-}
-
-// For development
-function showDatabase() {
-    models.user.showAll();
-}

@@ -1,22 +1,7 @@
-.navbar-right(ng-controller="LoginCtrl")
-    form.navbar-form(ng-hide="identity.isAuthenticated()")
-        .form-group
-            input.form-control(type="text", placeholder="Username", ng-model="user.username")
-            input.form-control(type="password", placeholder="Password", ng-model="user.password")
-        button.btn.btn-primary(ng-click="login(user)") Login
-        a.btn.btn-primary(href="#/signup") Sign Up
-
-    ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
-        li.dropdown
-            a.dropdown-toggle(href="", data-toggle="dropdown")
-                | Hello, {{ identity.currentUser.username }}
-                span.caret
-            ul.dropdown-menu
-                li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/users") Create category
-                li(ng-show="identity.isAuthenticated()")
-                    a(href="#/profile") My Votes
-                li(ng-show="identity.isAuthenticated()")
-                    a(href="#/profile") Profile
-                li
-                    a(href="#" ng-click="logout()") Sign Out
+.container.col-md-12
+    form.form-signin(name="signInForm", role="form")
+        h2.form-sign-in-heading Please sign in
+        input.form-control(type="text", placeholder="Username", ng-model="user.username", required, autofocus="", ng-trim="", ng-minlength="2", ng-maxlength="20")
+        input.form-control.sign-in-confirm-password-input(type="password", placeholder="Password", ng-model="user.password", ng-minlength="4", ng-maxlength="20", required)
+        button.btn.btn-primary.btn-lg.btn-block.sign-in-button(ng-click="login(user)", ng-disabled="signInForm.$pristine || signInForm.$invalid", type="submit")
+            | Sign in

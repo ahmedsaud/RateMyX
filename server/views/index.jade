@@ -5,12 +5,8 @@ block main-content
             .navbar-header
                 a.navbar-brand(href="#/") RateMyX
             .navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href="#/") Home
-                    li
-                        a(href="#/votes/create") Create Vote
-                div(ng-include="'partials/account/login'")
+                div(ng-include="'partials/nav/nav'")
+                div(ng-include="'partials/account/auth-navbar'")
 
     section
         div(ng-view)
@@ -19,7 +15,7 @@ block main-content
         footer.text-center
             small
                 a(href="https://github.com/flextry" target="_blank") Martin Nikolov
-                | &#169; 2014,
+                |  &#169; 2014,
                 a(href="http://telerikacademy.com/" target="_blank") Telerik Academy
             br
             small

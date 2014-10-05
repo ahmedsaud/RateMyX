@@ -1,7 +1,7 @@
-app.controller('CreateVoteController', function ($scope, $routeParams, $location, notifier, VoteResource, CategoryResource, EverliveService) {
+app.controller('CreateVoteController', function ($scope, $routeParams, $location, notifier, VoteService, EverliveService) {
     var categories = {};
 
-    CategoryResource.query().$promise
+    VoteService.getCategoryNames()
         .then(function (collection) {
             collection.forEach(function (category) {
                 categories[category.name] = category._id;
@@ -13,6 +13,7 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
     $scope.createVote = function (vote) {
         var firstCommaIndex = vote.picture.indexOf(',');
         var imageData = vote.picture.substr(firstCommaIndex + 1);
+        notifier.warning('Please wait while picture is uploading...');
         EverliveService.uploadImage(imageData, function (data) {
             onSuccessUpload(data, vote);
         }, onFailedUpload);
@@ -45,9 +46,9 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
             question: vote.question
         };
 
-        var voteResource = new VoteResource(voteModel);
-        voteResource.$save().then(function (data) {
-            $location.path('votes/' + data._id);
-        });
+        VoteService.createVote(voteModel)
+            .then(function (data) {
+                $location.path('votes/' + data._id);
+            });
     }
 });

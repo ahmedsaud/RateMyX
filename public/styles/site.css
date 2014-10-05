@@ -1,5 +1,6 @@
 body {
     padding-top: 80px;
+    padding-bottom: 40px;
 }
 .navbar-right .navbar-form input {
     margin-right: 10px;
@@ -26,6 +27,14 @@ div.navbar-collapse.collapse form.navbar-form.navbar-left.rockBands-search input
     margin-bottom: 80px;
 }
 
+div.container div.row {
+    margin-bottom: 30px;
+}
+
+div.col-md-3 {
+    margin-bottom: 30px;
+}
+
 #home-container .container .row:nth-child(2n+1):not(:first-child), #band-details-container .row:nth-child(2n):not(:first-child) {
     margin-top: 30px;
 }
@@ -38,8 +47,23 @@ div.navbar-collapse.collapse form.navbar-form.navbar-left.rockBands-search input
     font-weight: normal;
 }
 
-.image-container img {
+.img-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-container img, .img-container img {
     width: 100%;
+}
+
+.vote-buttons-container {
+    margin-left: 5px;
+}
+
+.btn-voting {
+    width: 26px;
+    height: 26px;
+    padding: 3px 8px;
 }
 
 .menu {

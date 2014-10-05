@@ -1,0 +1,23 @@
+ul.nav.navbar-nav(ng-controller="NavigationController")
+    li
+        a(href="#/")
+            | Home
+    li.dropdown
+        a.dropdown-toggle(href="" data-toggle="dropdown" id="themes") Categories
+            span.caret
+        ul.dropdown-menu(aria-labelledby="themes")
+            li
+                a(href="#/categories/ex-girlfriends") Ex-Girlfriends
+            li
+                a(href="#/categories/ex-boyfriends") Ex-Boyfriends
+            li
+                a(href="#/categories/others") Others
+    li(ng-show="identity.isAuthenticated()")
+        a(href="#/votes/create")
+            | Create Vote
+    li(ng-show="identity.isAuthenticated()")
+        a(href="#/votes/random")
+            | Random Vote
+    li(ng-show="identity.isAuthenticated()")
+        a(href="#/hall-of-fame")
+            | Hall of Fame

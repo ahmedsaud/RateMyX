@@ -1,0 +1,10 @@
+.container
+    .row
+        .col-md-6.big-text
+            strong
+                | \#{{ category.name }}
+    .row
+        .col-md-3.text-center(ng-repeat="vote in votes")
+            .img-container
+                a(href="#/vote/{{ vote._id }}")
+                    img(ng-src="{{ vote.pictureUrl }}")

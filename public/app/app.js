@@ -16,7 +16,7 @@ app.config(function ($routeProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl: '/partials/main/home',
+            templateUrl: '/partials/home/home',
             controller: 'MainController'
         })
         .when('/votes/create', {
@@ -24,14 +24,26 @@ app.config(function ($routeProvider) {
             controller: 'CreateVoteController',
             resolve: routeUserChecks.authenticated
         })
-        .when('/votes/:id', {
+        .when('/categories/:name', {
+            templateUrl: '/partials/categories/category',
+            controller: 'ListByCategoryController'
+        })
+        .when('/votes/random', {
             templateUrl: '/partials/votes/vote-details',
-            controller: 'VoteDetailsController',
+            controller: 'RandomVoteController',
             resolve: routeUserChecks.authenticated
+        })
+        .when('/vote/:id', {
+            templateUrl: '/partials/votes/vote-details',
+            controller: 'VoteDetailsController'
         })
         .when('/signup', {
             templateUrl: '/partials/account/signup',
             controller: 'SignUpCtrl'
+        })
+        .when('/login', {
+            templateUrl: '/partials/account/login',
+            controller: 'LoginController'
         })
         .when('/profile', {
             templateUrl: '/partials/account/profile',

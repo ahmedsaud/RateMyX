@@ -1,4 +1,4 @@
-app.factory('GameRequests', function ($q, $http, UsersResource) {
+app.factory('VoteService', function ($q, $http) {
     'use strict';
 
     function postJson(url, data) {
@@ -33,8 +33,84 @@ app.factory('GameRequests', function ($q, $http, UsersResource) {
     }
 
     return {
-        scanUser: function (targetID) {
-            return getJson('/api/users-scan/' + targetID);
+        getVotesByCategoryName: function (categoryName) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/categories/' + categoryName
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        getCategoryNames: function () {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/categories/'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        createVote: function (voteModel) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/api/votes/',
+                data: voteModel
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        getVotes: function () {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/votes/'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        getVoteById: function (voteId) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/vote/' + voteId
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        getRandomVote: function() {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/votes/random'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         }
     }
 });

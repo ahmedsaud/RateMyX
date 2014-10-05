@@ -2,12 +2,12 @@
     .row
         .col-md-6.big-text
             strong
-                | {{ key }}
+                | \#{{ key }}
         .col-md-6
             a.btn.btn-default.pull-right(href="#/categories/{{ key | lowercase }}")
                 | See all
     .row
         .col-md-3.text-center(ng-repeat="vote in value | limitTo: 4")
-            .image-container
-                a(href="#/votes/{{ vote._id }}")
+            .img-container
+                a(href="#/vote/{{ vote._id }}")
                    img(ng-src="{{ vote.pictureUrl }}")

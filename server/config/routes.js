@@ -6,12 +6,15 @@ module.exports = function (app) {
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
+    // Vote areas
     app.get('/api/votes', controllers.votes.getAllVotes);
     app.post('/api/votes', auth.isAuthenticated, controllers.votes.createVote);
-    app.get('/api/votes/:id', auth.isAuthenticated, controllers.votes.getVoteById);
+    app.get('/api/votes/random', controllers.votes.getRandomVote);
+    app.get('/api/vote/:id', controllers.votes.getVoteById);
 
+    // Category areas
     app.get('/api/categories', controllers.categories.getAllCategories);
-    app.get('/api/category/:name', controllers.votes.getVotesByCategoryName);
+    app.get('/api/categories/:name', controllers.votes.getVotesByCategoryName);
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
