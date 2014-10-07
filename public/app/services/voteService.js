@@ -33,12 +33,39 @@ app.factory('VoteService', function ($q, $http) {
     }
 
     return {
+        getUserVotes: function () {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/votes/mine'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
         getVotesByCategoryName: function (categoryName) {
             var deferred = $q.defer();
 
             $http({
                 method: 'GET',
                 url: '/api/categories/' + categoryName
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        createCategory: function (categoryModel) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/api/categories/',
+                data: categoryModel
             })
                 .success(function (data) {
                     deferred.resolve(data);

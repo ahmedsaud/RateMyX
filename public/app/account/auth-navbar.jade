@@ -10,12 +10,16 @@
                 | Hello, {{ identity.currentUser.username }}&nbsp;
                 span.caret
             ul.dropdown-menu
-                //li(ng-show="identity.currentUser.isAdmin()")
-                //    a(href="#/admin/users") Create category
-                //li(ng-show="identity.isAuthenticated()")
-                //    a(href="#/profile") My Votes
-                //li(ng-show="identity.isAuthenticated()")
-                //    a(href="#/profile") Profile
+                li(ng-show="identity.currentUser.isAdmin()")
+                    a(href="#/admin/categories") Categories
+                li(ng-show="identity.currentUser.isAdmin()")
+                    a(href="#/admin/category/create") Create category
+                li(ng-show="identity.currentUser.isAdmin()")
+                    a(href="#/admin/users") Users
+                li(ng-show="identity.isAuthenticated()")
+                    a(href="#/votes/mine") My Votes
+                li(ng-show="identity.isAuthenticated()")
+                    a(href="#/profile") Profile
                 li
                     a(href="#" ng-click="logout()") Sign Out
 

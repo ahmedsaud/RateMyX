@@ -1,5 +1,5 @@
 .container(ng-repeat="(key, value) in categories")
-    .row
+    .row(ng-if="value.length > 0")
         .col-md-6.big-text
             strong
                 | \#{{ key }}

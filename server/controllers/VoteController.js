@@ -6,7 +6,7 @@ function getRandomInt(min, max) {
 }
 
 module.exports = {
-    createVote: function (req, res) {
+    createVote: function (req, res, next) {
         var newVoteData = req.body;
         newVoteData.category = newVoteData.category.toLowerCase();
         newVoteData.userId = req.user._id;
@@ -14,51 +14,67 @@ module.exports = {
         Vote.create(newVoteData, function (error, user) {
             if (error) {
                 console.log('Failed to create new vote: ' + error);
-                return;
+                return next(error);
             }
 
             res.send(user);
         });
     },
-    getAllVotes: function (req, res) {
+    getAllVotes: function (req, res, next) {
         Vote.find({}).exec(function (error, collection) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
+                return next(error);
             }
 
             res.send(collection);
         })
     },
-    getVoteById: function (req, res) {
+    getVoteById: function (req, res, next) {
         var voteId = req.params.id;
 
         Vote.findOne({_id: voteId}).exec(function (error, vote) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
+                return next(error);
             }
 
             res.send(vote);
         })
     },
-    getVotesByCategoryName: function (req, res) {
+    getVotesByCategoryName: function (req, res, next) {
         Vote.find({ category: req.params.name }).exec(function (error, collection) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
+                return next(error);
             }
 
             res.send(collection);
         })
     },
-    getRandomVote: function (req, res) {
+    getRandomVote: function (req, res, next) {
         Vote.find({}).count().exec(function (error, count) {
             var randomIndex = getRandomInt(0, count - 1);
             Vote.find({}).skip(randomIndex).limit(1).exec(function (error, collection) {
                 if (error) {
                     console.log('Votes could not be loaded: ' + error);
+                    return next(error);
                 }
 
                 res.send(collection);
             })
         });
+    },
+    getUserVotes: function (req, res, next) {
+        var userId = req.user._id;
+
+        Vote.find({ userId: userId }).exec(function (error, collection) {
+            if (error) {
+                console.log('Votes could not be loaded: ' + error);
+                return next(error);
+            }
+
+            res.send(collection);
+        })
     }
 };

@@ -63,10 +63,44 @@ div.col-md-3 {
     margin-left: 5px;
 }
 
+.vote-thumbs-container {
+    margin-top: -21px;
+}
+
 .btn-voting {
     width: 26px;
-    height: 26px;
-    padding: 3px 8px;
+    height: 25px;
+    padding: 1px 8px;
+    margin-right: 2px;
+}
+
+div.col-md-6 div div.well-lg.well {
+    padding-right: 10px;
+}
+
+p.well {
+    word-wrap: break-word;
+}
+
+.btn-vote-up {
+    margin-right: 12px;
+}
+
+.btn-vote-down {
+    margin-right: 5px;
+}
+
+.btn-vote-up, .btn-vote-down {
+    color: gray;
+    font-size: 23px;
+}
+
+.btn-vote-up:hover {
+    color: green;
+}
+
+.btn-vote-down:hover {
+    color: red;
 }
 
 .menu {
@@ -126,6 +160,10 @@ input.ng-dirty.ng-valid.validity {
     font-size: 2em;
 }
 
+table thead tr th {
+    text-align: center;
+}
+
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
@@ -138,14 +176,16 @@ input.ng-dirty.ng-valid.validity {
     margin-left: 5px;
 }
 
-.btn-voting {
-    width: 26px;
-    height: 26px;
-    padding: 3px 8px;
+.create-vote-btn-container button {
+    margin-right: 5px;
 }
 
 #song-details-container .jumbotron {
     padding-bottom: 20px;
+}
+
+div.row.jumbotron div.col-md-6 h1 {
+    font-size: 3.5em;
 }
 
 .video-container {

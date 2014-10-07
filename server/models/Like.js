@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var likeSchema = mongoose.Schema({
-    voteId: { type: String, require: '{PATH} is required'},
+    voteId: { type: String, require: '{PATH} is required' },
+    userId: { type: String, require: '{PATH} is required' },
     isUpVote: { type: Boolean, require: '{PATH} is required'}
 });
 

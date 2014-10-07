@@ -5,63 +5,20 @@
              | \#{{ vote.category | lowercase}}
             div
                 p
-                    strong Votes
+                    | Likes:
                     span.pull-right
                         | {{ vote.likes }}
                         span.vote-buttons-container
                             a.btn.btn-default.btn-small.btn-voting +
-                            a.btn.btn-default.btn-small.btn-voting -
+                            a.btn.btn-default.btn-small.btn-voting −
+                p
+                    | Question:
+                    div.well.well-lg
+                        div {{ vote.question }}
+                        span.vote-thumbs-container.pull-right
+                            a.btn-small.btn-vote-up
+                                span.glyphicon.glyphicon-thumbs-up
+                            a.btn-small.btn-vote-down
+                                span.glyphicon.glyphicon-thumbs-down
         div.col-md-6.image-container
            img(ng-src="{{ vote.pictureUrl }}")
-
-
-    //
-    //
-    //<div id="song-details-container" class="container clearfix" ng-controller="SongDetailsController">
-    //    <div class="row jumbotron">
-    //        <div class="col-md-7">
-    //            <h1>{{ song.Name}}</h1>
-    //            <div>
-    //                <p>
-    //                    <strong>Band: </strong>
-    //                    <span class="pull-right">
-    //                        <a href="#/band/{{ song.BandInfo.Src }}">{{ song.BandInfo.Name }}</a>
-    //                    </span>
-    //                </p>
-    //                <p>
-    //                    <strong>Album: </strong>
-    //                    <span class="pull-right">
-    //                        <a href="#/album/{{ song.AlbumInfo.Src }}">{{ song.AlbumInfo.Name }}</a>
-    //                    </span>
-    //                </p>
-    //                <p>
-    //                    <strong>Votes: </strong>
-    //                    <span class="pull-right">
-    //                        {{ song.Rating }}
-    //                        <span class="vote-buttons-container">
-    //                            <a class="btn btn-default btn-sm btn-voting" ng-click="upRating(song)">+</a>
-    //                            <a class="btn btn-default btn-sm btn-voting" ng-click="downRating(song)">−</a>
-    //                        </span>
-    //                    </span>
-    //                </p>
-    //                <p>
-    //                    <a class="btn btn-default btn-sm pull-right" href="#/song/{{ song.Src }}/edit">Edit Song</a>
-    //                    <div class="clearfix"></div>
-    //                </p>
-    //                <p>
-    //                    <button class="btn btn-primary btn-md" ng-click="onShowVideoButtonClick()">See Official Video</button>
-    //                </p>
-    //            </div>
-    //        </div>
-    //        <div class="col-md-5 image-container">
-    //            <img ng-src="{{ song.ImageUrl }}" alt="{{ song.Name}}"/>
-    //        </div>
-    //    </div>
-    //    <div class="row" id="video">
-    //        <div class="video-container">
-    //            <div class="embed-responsive embed-responsive-16by9">
-    //                <iframe class="embed-responsive-item" src="{{ song.YouTubeLink }}"></iframe>
-    //            </div>
-    //        </div>
-    //    </div>
-    //</div>

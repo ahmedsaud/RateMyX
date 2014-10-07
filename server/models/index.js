@@ -2,14 +2,14 @@
 
 var User = require('../models/User'),
     Category = require('../models/Category'),
-    Vote = require('../models/Vote'),
     Like = require('../models/Like'),
-    Comment = require('../models/Comment');
+    Comment = require('../models/Comment'),
+    Vote = require('../models/Vote');
 
 module.exports = {
     user: User,
     category: Category,
-    votes: Vote,
+    vote: Vote,
     like: Like,
     comment: Comment
 };

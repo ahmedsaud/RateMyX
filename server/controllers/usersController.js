@@ -11,7 +11,7 @@ module.exports = {
             if (error) {
                 console.log('Failed to register new user: ' + error);
                 res.status(400);
-                res.send({message: 'Failed to register new user'});
+                res.send({message: 'Username already exists!'});
                 return;
             }
 
@@ -40,5 +40,15 @@ module.exports = {
         else {
             res.send({reason: 'You do not have permissions!'})
         }
+    },
+    getAllUsers: function (req, res) {
+        User.find({}).exec(function (error, collection) {
+            if (error) {
+                res.status(400);
+                return res.send({ reason: error.toString() });
+            }
+
+            res.send(collection);
+        })
     }
 };

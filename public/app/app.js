@@ -28,6 +28,11 @@ app.config(function ($routeProvider) {
             templateUrl: '/partials/categories/category',
             controller: 'ListByCategoryController'
         })
+        .when('/votes/mine', {
+            templateUrl: '/partials/votes/user-votes',
+            controller: 'UserVotesController',
+            resolve: routeUserChecks.authenticated
+        })
         .when('/votes/random', {
             templateUrl: '/partials/votes/vote-details',
             controller: 'RandomVoteController',
@@ -53,6 +58,16 @@ app.config(function ($routeProvider) {
         .when('/admin/users', {
             templateUrl: '/partials/admin/users-list',
             controller: 'UserListCtrl',
+            resolve: routeUserChecks.adminRole
+        })
+        .when('/admin/categories', {
+            templateUrl: '/partials/admin/categories-list',
+            controller: 'ListCategoryController',
+            resolve: routeUserChecks.adminRole
+        })
+        .when('/admin/category/create', {
+            templateUrl: '/partials/admin/create-category',
+            controller: 'CreateCategoryController',
             resolve: routeUserChecks.adminRole
         })
         .otherwise({redirectTo: '/'})
