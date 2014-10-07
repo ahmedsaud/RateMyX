@@ -69,6 +69,9 @@ app.factory('VoteService', function ($q, $http) {
             })
                 .success(function (data) {
                     deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
                 });
 
             return deferred.promise;
@@ -99,7 +102,7 @@ app.factory('VoteService', function ($q, $http) {
 
             return deferred.promise;
         },
-        getRandomVote: function() {
+        getRandomVote: function () {
             var deferred = $q.defer();
 
             $http({

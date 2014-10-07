@@ -1,4 +1,4 @@
-app.controller('CreateVoteController', function ($scope, $routeParams, $location, notifier, VoteService, EverliveService) {
+app.controller('CreateVoteController', function ($scope, $routeParams, $location, notifier, auth, VoteService, EverliveService) {
     var categories = {};
 
     VoteService.getCategoryNames()
@@ -11,6 +11,7 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
         });
 
     $scope.createVote = function (vote) {
+        toggleLoading();
         var firstCommaIndex = vote.picture.indexOf(',');
         var imageData = vote.picture.substr(firstCommaIndex + 1);
         notifier.warning('Please wait while picture is uploading...');
@@ -18,6 +19,11 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
             onSuccessUpload(data, vote);
         }, onFailedUpload);
     };
+
+    function toggleLoading() {
+        $('#loadingmsg').toggle();
+        $('#loadingover').toggle();
+    }
 
     function onSuccessUpload(data, vote) {
         EverliveService.getImageData(data.result.Id)
@@ -30,12 +36,11 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
                     notifier.success('Picture was uploaded successfully!');
                     addVoteToDatabase(vote, imageData.Result.Uri);
                 })
-            }, function () {
-                notifier.error("Cannot get image data!");
-            });
+            }, onFailedUpload);
     }
 
     function onFailedUpload() {
+        toggleLoading();
         notifier.error("Cannot get image data!");
     }
 
@@ -48,7 +53,8 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
 
         VoteService.createVote(voteModel)
             .then(function (data) {
-                $location.path('votes/' + data._id);
-            });
+                toggleLoading();
+                $location.path('vote/' + data._id);
+            }, toggleLoading);
     }
 });

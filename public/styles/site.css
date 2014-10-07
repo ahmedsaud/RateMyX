@@ -2,12 +2,15 @@ body {
     padding-top: 80px;
     padding-bottom: 40px;
 }
+
 .navbar-right .navbar-form input {
     margin-right: 10px;
 }
+
 .navbar-right .navbar-form a.btn {
     margin-left: 10px;
 }
+
 .toast-top-right {
     top: 70px;
 }
@@ -260,4 +263,33 @@ h3.gameStatusInfo {
 button.refresh-btn {
     margin-top: -5px;
     margin-right: 5px;
+}
+
+#loadingmsg {
+    color: black;
+    background: #fff;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 48%;
+    z-index: 100;
+    border-radius: 5px;
+    margin-left: -5%;
+    margin-right: -25%;
+    margin-bottom: -25%;
+}
+
+#loadingover {
+    background: black;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
 }
