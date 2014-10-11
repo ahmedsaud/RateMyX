@@ -9,14 +9,16 @@ module.exports = function (app) {
     // Vote areas
     app.get('/api/votes', controllers.votes.getAllVotes);
     app.post('/api/votes', auth.isAuthenticated, controllers.votes.createVote);
-    app.get('/api/votes/mine', controllers.votes.getUserVotes);
-    app.get('/api/votes/random', controllers.votes.getRandomVote);
-    app.get('/api/vote/:id', controllers.votes.getVoteById);
+    app.get('/api/votes/mine', auth.isAuthenticated, controllers.votes.getUserVotes);
+    app.get('/api/votes/random', auth.isAuthenticated, controllers.votes.getRandomVote);
+    app.get('/api/vote/:id', auth.isAuthenticated, controllers.votes.getVoteById);
+    app.delete('/api/votes/:id', auth.isInRole('admin'), controllers.votes.deleteVote);
 
     // Category areas
     app.get('/api/categories', controllers.categories.getAllCategories);
     app.get('/api/categories/:name', controllers.votes.getVotesByCategoryName);
-    app.post('/api/categories', controllers.categories.createCategory);
+    app.post('/api/categories', auth.isInRole('admin'), controllers.categories.createCategory);
+    app.delete('/api/categories/:id', auth.isInRole('admin'), controllers.categories.deleteCategory);
 
     // Like areas
     app.post('/api/likes', auth.isAuthenticated, controllers.likes.makeLike);
@@ -25,7 +27,7 @@ module.exports = function (app) {
     app.post('/api/comments', auth.isAuthenticated, controllers.comments.createComment);
 
     // Hall of fame
-    app.get('/api/hall-of-fame/by-most-likes', controllers.hallOfFame.getVotesByMostLikes);
+    app.get('/api/hall-of-fame/by-most-likes', auth.isAuthenticated, controllers.hallOfFame.getVotesByMostLikes);
 
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {

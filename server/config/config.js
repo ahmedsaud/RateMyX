@@ -9,7 +9,7 @@ module.exports = {
     },
     production: {
         rootPath: rootPath,
-        db: 'mongodb://admin:telerik@ds043180.mongolab.com:43180/votter',
+        db: 'mongodb://admin:telerik@ds035300.mongolab.com:35300/ratemyx',
         port: process.env.PORT || 4444
     }
 };
