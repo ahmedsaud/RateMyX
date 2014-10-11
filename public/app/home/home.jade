@@ -6,7 +6,7 @@
         .col-md-6
             a.btn.btn-default.pull-right(href="#/categories/{{ key | lowercase }}")
                 | See all
-    .row
+    .row(ng-if="value.length > 0")
         .col-md-3.col-lg-3.col-sm-6.text-center(ng-repeat="vote in value | limitTo: 8")
             .img-container
                 a(href="#/vote/{{ vote._id }}")

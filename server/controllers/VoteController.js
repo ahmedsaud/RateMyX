@@ -28,7 +28,21 @@ module.exports = {
                 return next(error);
             }
 
+            collection.reverse();
             res.send(collection);
+        })
+    },
+    deleteVote: function (req, res, next) {
+        var voteId = req.params.id;
+
+        Vote.remove({ _id: voteId }).exec(function (error) {
+            if (error) {
+                console.log('Vote could not be removed: ' + error);
+                return next(error);
+            }
+
+            res.send({message: 'Vote was successfully removed!'});
+            res.end();
         })
     },
     getVoteById: function (req, res, next) {

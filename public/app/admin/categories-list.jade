@@ -5,6 +5,10 @@
             thead
                 tr
                     th Name
+                    th Options
             tbody
                 tr(ng-repeat="category in categories")
                     td {{ category.name }}
+                    td
+                        button.btn.btn-xs.btn-danger(title="Remove", ng-really-message="Are you sure?" ng-really-click="removeCategory(category)")
+                            | Delete

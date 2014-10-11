@@ -1,5 +1,6 @@
 app.controller('ProfileCtrl', function ($scope, $location, auth, notifier, identity) {
     $scope.user = {
+        _id: identity.currentUser._id,
         firstName: identity.currentUser.firstName,
         lastName: identity.currentUser.lastName
     };

@@ -13,6 +13,19 @@ module.exports = {
             res.send(category);
         });
     },
+    deleteCategory: function (req, res, next) {
+        var categoryId = req.params.id;
+
+        Category.remove({ _id: categoryId }).exec(function (error) {
+            if (error) {
+                console.log('Category could not be removed: ' + error);
+                return next(error);
+            }
+
+            res.send({message: 'Category was successfully removed!'});
+            res.end();
+        })
+    },
     getAllCategories: function (req, res) {
         Category.find({}).exec(function (error, collection) {
             if (error) {

@@ -182,6 +182,7 @@ table thead tr th {
 
 .vote-buttons-container {
     margin-left: 5px;
+    margin-right: 3px;
 }
 
 .create-vote-btn-container button {

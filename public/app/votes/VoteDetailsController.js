@@ -1,5 +1,6 @@
-app.controller('VoteDetailsController', function ($scope, $routeParams, notifier, VoteService) {
+app.controller('VoteDetailsController', function ($scope, $routeParams, $location, identity, notifier, VoteService) {
     var voteId = $routeParams.id;
+    $scope.identity = identity;
 
     VoteService.getVoteById(voteId)
         .then(function (vote) {
@@ -12,6 +13,16 @@ app.controller('VoteDetailsController', function ($scope, $routeParams, notifier
 
     $scope.downVote = function () {
         makeVote(false);
+    };
+
+    $scope.deleteVote = function () {
+        VoteService.deleteVote($scope.vote._id)
+            .then(function (data) {
+                notifier.warning(data.message);
+                $location.path('/');
+            }, function () {
+                notifier.error('Something bad happened!')
+            });
     };
 
     $scope.createComment = function (comment) {

@@ -4,6 +4,10 @@
             h1
                 | \#{{ vote.category | lowercase}}
             div
+                p(ng-if="identity.currentUser.isAdmin()")
+                    | Options:
+                    span.pull-right
+                        button.btn.btn-danger.btn-sm(, ng-really-message="Are you sure?" ng-really-click="deleteVote()") Delete
                 p
                     | Rating:
                     span.pull-right
