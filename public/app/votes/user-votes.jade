@@ -1,6 +1,10 @@
 .container
+    .row(ng-if="votes.length==0")
+        .col-md-12
+            h2.text-center You do not have any created votes!
     .row
-        .col-md-3.text-center(ng-repeat="vote in votes")
+        .col-md-3.col-lg-3.col-sm-6.text-center(ng-repeat="vote in votes")
             .img-container
                 a(href="#/vote/{{ vote._id }}")
                     img(ng-src="{{ vote.pictureUrl }}")
+            .div \#{{ vote.category }}

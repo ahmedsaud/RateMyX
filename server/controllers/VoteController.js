@@ -1,5 +1,6 @@
 var auth = require('../config/auth'),
-    Vote = require('mongoose').model('Vote');
+    Vote = require('mongoose').model('Vote'),
+    Like = require('mongoose').model('Like');
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -39,7 +40,18 @@ module.exports = {
                 return next(error);
             }
 
-            res.send(vote);
+            Like.findOne({voteId: voteId, userId: req.user._id}).exec(function (error, like) {
+                if (error) {
+                    console.log('Like could not be loaded: ' + error);
+                    return next(error);
+                }
+
+                if (like) {
+                    vote.isCurrentUserVotted = true;
+                }
+
+                res.send(vote);
+            });
         })
     },
     getVotesByCategoryName: function (req, res, next) {

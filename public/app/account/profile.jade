@@ -1,20 +1,16 @@
 .container
     .well
-        form.form-horizontal(name="profileForm")
+        form.form-horizontal(name="passwordForm")
             fieldset
-                legend Create New User
-                .form-group
-                    label.col-md-2.control-label(for="first-name") First Name
-                    .col-md-10
-                        input.form-control(type="text", placeholder="First Name", ng-model="user.firstName", required)
-                .form-group
-                    label.col-md-2.control-label(for="last-name") Last Name
-                    .col-md-10
-                        input.form-control(type="text", placeholder="Last Name", ng-model="user.lastName", required)
+                legend Update password
                 .form-group
                     label.col-md-2.control-label(for="password") Password
                     .col-md-10
-                        input.form-control(type="password", placeholder="Password", ng-model="user.password")
+                        input#password.form-control(type="password", placeholder="Password", ng-model="newPassword.password", required, ng-minlength=3)
+                .form-group
+                    label.col-md-2.control-label(for="confirmPassword") Confirm Password
+                    .col-md-10
+                        input#confirmPassword.form-control(type="password", placeholder="Confirm Password", ng-model="newPassword.confirmPassword", required, ng-minlength=3)
                 .pull-right
-                    button.btn.btn-primary(ng-click="update(user)", ng-disabled="profileForm.$invalid") Update
+                    button.btn.btn-primary(ng-click="updatePassword(newPassword)", ng-disabled="passwordForm.$pristine || passwordForm.$invalid || newPassword.password != newPassword.confirmPassword") Update
                     a.btn.btn-primary(href="#/") Cancel

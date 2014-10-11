@@ -1,14 +1,23 @@
-app.controller('ProfileCtrl', function ($scope, $location, auth, identity) {
+app.controller('ProfileCtrl', function ($scope, $location, auth, notifier, identity) {
     $scope.user = {
         firstName: identity.currentUser.firstName,
         lastName: identity.currentUser.lastName
     };
 
-    $scope.update = function (user) {
+    $scope.updatePassword = function (form) {
+        if (form.password !== form.confirmPassword) {
+            notifier.error('Different passwords');
+            return;
+        }
+
+        var user = {
+            _id: $scope.user._id,
+            password: form.password
+        };
+
         auth.update(user).then(function () {
-            $scope.firstName = user.firstName;
-            $scope.lastName = user.lastName;
+            notifier.success('Password was changed successfully!');
             $location.path('/');
-        });
-    }
+        })
+    };
 });

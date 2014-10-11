@@ -1,8 +1,8 @@
 .container.col-md-12
         form.form-signin(name="signUpForm", role="form")
             h2.form-sign-in-heading Please sign up
-            input.form-control(type="text", placeholder="Username", ng-model="user.username", required, autofocus="", ng-trim="", ng-minlength="2", ng-maxlength="20")
-            input.form-control.sign-in-password-input(type="password", placeholder="Password", ng-model="user.password", ng-minlength="4", ng-maxlength="20", required)
-            input.form-control.sign-in-confirm-password-input(type="password", placeholder="Confirm Password", ng-model="user.confirmPassword", ng-minlength="4", ng-maxlength="20", required)
+            input.form-control(type="text", placeholder="Username", ng-model="user.username", required, autofocus="", ng-trim="", ng-minlength="3", ng-maxlength="20")
+            input.form-control.sign-in-password-input(type="password", placeholder="Password", ng-model="user.password", ng-minlength="3", ng-maxlength="20", required)
+            input.form-control.sign-in-confirm-password-input(type="password", placeholder="Confirm Password", ng-model="user.confirmPassword", ng-minlength="3", ng-maxlength="20", required)
             button.btn.btn-primary.btn-lg.btn-block.sign-in-button(ng-click="signup(user)", ng-disabled="signUpForm.$pristine || signUpForm.$invalid || user.password != user.confirmPassword", type="submit")
                 | Sign up

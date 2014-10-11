@@ -40,7 +40,13 @@ app.config(function ($routeProvider) {
         })
         .when('/vote/:id', {
             templateUrl: '/partials/votes/vote-details',
-            controller: 'VoteDetailsController'
+            controller: 'VoteDetailsController',
+            resolve: routeUserChecks.authenticated
+        })
+        .when('/hall-of-fame', {
+            templateUrl: '/partials/hall-of-fame/top-votes',
+            controller: 'HallOfFameController',
+            resolve: routeUserChecks.authenticated
         })
         .when('/signup', {
             templateUrl: '/partials/account/signup',
@@ -57,7 +63,7 @@ app.config(function ($routeProvider) {
         })
         .when('/admin/users', {
             templateUrl: '/partials/admin/users-list',
-            controller: 'UserListCtrl',
+            controller: 'ListUsersController',
             resolve: routeUserChecks.adminRole
         })
         .when('/admin/categories', {
@@ -76,7 +82,7 @@ app.config(function ($routeProvider) {
 app.run(function ($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
         if (rejection === 'not authorized') {
-            $location.path('/');
+            $location.path('/login');
         }
     })
 });

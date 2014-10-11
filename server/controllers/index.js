@@ -1,9 +1,15 @@
 var UsersController = require('../controllers/UsersController'),
     VoteController = require('../controllers/VoteController'),
-    CategoryController = require('../controllers/CategoryController');
+    CategoryController = require('../controllers/CategoryController'),
+    LikeController = require('../controllers/LikeController'),
+    CommentController = require('../controllers/CommentController'),
+    HallOfFameController = require('../controllers/HallOfFameController');
 
 module.exports = {
     users: UsersController,
     votes: VoteController,
-    categories: CategoryController
+    categories: CategoryController,
+    likes: LikeController,
+    comments: CommentController,
+    hallOfFame: HallOfFameController
 };

@@ -7,7 +7,7 @@
             a.btn.btn-default.pull-right(href="#/categories/{{ key | lowercase }}")
                 | See all
     .row
-        .col-md-3.text-center(ng-repeat="vote in value | limitTo: 4")
+        .col-md-3.col-lg-3.col-sm-6.text-center(ng-repeat="vote in value | limitTo: 8")
             .img-container
                 a(href="#/vote/{{ vote._id }}")
                    img(ng-src="{{ vote.pictureUrl }}")

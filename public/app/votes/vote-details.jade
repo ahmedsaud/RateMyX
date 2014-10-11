@@ -2,23 +2,43 @@
     div.row.jumbotron
         div.col-md-6
             h1
-             | \#{{ vote.category | lowercase}}
+                | \#{{ vote.category | lowercase}}
             div
                 p
-                    | Likes:
+                    | Rating:
                     span.pull-right
                         | {{ vote.likes }}
-                        span.vote-buttons-container
-                            a.btn.btn-default.btn-small.btn-voting +
-                            a.btn.btn-default.btn-small.btn-voting −
+                        span.vote-buttons-container(ng-if="!vote.isCurrentUserVotted")
+                            a.btn.btn-default.btn-small.btn-voting(title="Like", ng-click="upVote()") +
+                            a.btn.btn-default.btn-small.btn-voting(title="Dislike", ng-click="downVote()") −
+                        span(ng-if="vote.numberOfLikers > 0")
+                            | &nbsp;(by {{ vote.numberOfLikers}} huffers)
                 p
-                    | Question:
+                    | Author's comment:
                     div.well.well-lg
-                        div {{ vote.question }}
-                        span.vote-thumbs-container.pull-right
-                            a.btn-small.btn-vote-up
-                                span.glyphicon.glyphicon-thumbs-up
-                            a.btn-small.btn-vote-down
-                                span.glyphicon.glyphicon-thumbs-down
+                        div {{ vote.description }}
         div.col-md-6.image-container
-           img(ng-src="{{ vote.pictureUrl }}")
+            img(ng-src="{{ vote.pictureUrl }}")
+    .row(ng-if="vote.comments.length > 0")
+        .col-md-3
+        .col-md-6.text-center
+            p
+                h2 What Others Are Saying:
+            div
+                ul.list-group
+                    li.list-group-item(ng-repeat="comment in vote.comments") {{ comment.content }}
+    .row(ng-if="!vote.isCurrentUserCommented")
+        .col-md-2
+        .col-md-8.text-center
+            p
+                h2 What Do You Think Of My X?
+            div
+                form.form-horizontal(name="createCommentForm", method="POST", enctype='multipart/form-data')
+                    .form-group
+                        label.col-md-2.control-label(for="content") Comment:
+                        .col-md-8
+                            textarea.form-control(placeholder="Start typing...", ng-model="comment.content", required, minlength="2", maxlength="128")
+                    .form-group
+                        label.col-md-2.control-label(for="post-comment")
+                        .col-md-8
+                            button.btn.btn-primary(ng-click="createComment(comment)", ng-disabled="createCommentForm.$invalid") Post Comment

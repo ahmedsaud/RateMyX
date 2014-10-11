@@ -11,11 +11,11 @@
                 .form-group
                     label.col-md-2.control-label(for="picture") Picture
                     .col-md-10
-                        input.form-control(type="file", placeholder="Picture", fileread="vote.picture", required)
+                        input.form-control(type="file", placeholder="Picture", fileread="vote.picture", accept="image/*", required)
                 .form-group
-                    label.col-md-2.control-label(for="question") Question
+                    label.col-md-2.control-label(for="description") Comment
                     .col-md-10
-                        input.form-control(type="text", placeholder="Enter something answered to - Yes or No?", ng-model="vote.question", required)
+                        input.form-control(type="text", placeholder="Write something from the heart", ng-model="vote.description", required)
                 .pull-right.create-vote-btn-container
-                    button.btn.btn-primary(ng-click="createVote(vote)", ng-disabled="createVoteForm.$invalid") Create
+                    button.btn.btn-primary(ng-click="createVote(vote)", ng-disabled="createVoteForm.$invalid || !vote.picture") Create
                     a.btn.btn-primary(href="#/") Cancel

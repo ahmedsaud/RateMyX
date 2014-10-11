@@ -5,11 +5,11 @@ var voteSchema = mongoose.Schema({
     category: { type: String, require: '{PATH} is required' },
     pictureUrl: { type: String, require: '{PATH} is required'},
     userId: { type: String, require: '{PATH} is required' },
-    question: { type: String, require: '{PATH} is required'},
-    givenYes: { type: Number, min: 0, default: 0 },
-    givenNo: { type: Number, min: 0, default: 0 },
+    description: { type: String, require: '{PATH} is required'},
     likes: { type: Number, default: 0 },
-    comments: [CommentSchema]
+    numberOfLikers: { type: Number, min: 0, default: 0 },
+    comments: [CommentSchema],
+    isCurrentUserVotted: { type: Boolean, default: false }
 });
 
 mongoose.model('Vote', voteSchema);

@@ -3,7 +3,7 @@ app.controller('CreateCategoryController', function ($scope, $routeParams, $loca
         VoteService.createCategory(category)
             .then(function () {
                 notifier.success('Category was created successfully!');
-                $location.path('/');
+                $location.path('/admin/categories');
             });
     };
 });

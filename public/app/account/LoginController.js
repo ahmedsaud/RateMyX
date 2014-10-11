@@ -1,4 +1,8 @@
 app.controller('LoginController', function ($scope, $location, notifier, identity, auth) {
+    if (identity.isAuthenticated()) {
+        $location.path('/');
+    }
+
     $scope.identity = identity;
 
     $scope.login = function (user) {

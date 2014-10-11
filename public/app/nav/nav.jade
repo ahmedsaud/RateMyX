@@ -3,21 +3,31 @@ ul.nav.navbar-nav(ng-controller="NavigationController")
         a(href="#/")
             | Home
     li.dropdown
-        a.dropdown-toggle(href="" data-toggle="dropdown" id="themes") Categories
+        a.dropdown-toggle(href="" data-toggle="dropdown" id="themes") Categories&nbsp;
             span.caret
         ul.dropdown-menu(aria-labelledby="themes")
             li
                 a(href="#/categories/ex-girlfriends") Ex-Girlfriends
+    li.dropdown(ng-show="identity.isAuthenticated()")
+        a.dropdown-toggle(href="" data-toggle="dropdown" id="themes") Votes&nbsp;
+            span.caret
+        ul.dropdown-menu(aria-labelledby="themes")
             li
-                a(href="#/categories/ex-boyfriends") Ex-Boyfriends
+                a(href="#/votes/create") Create
             li
-                a(href="#/categories/others") Others
-    li(ng-show="identity.isAuthenticated()")
-        a(href="#/votes/create")
-            | Create Vote
-    li(ng-show="identity.isAuthenticated()")
-        a(href="#/votes/random")
-            | Random Vote
+                a(href="#/votes/mine") My Votes
+            li
+                a(href="#/votes/random/") Get Random
     li(ng-show="identity.isAuthenticated()")
         a(href="#/hall-of-fame")
             | Hall of Fame
+    li.dropdown(ng-show="identity.currentUser.isAdmin()")
+        a.dropdown-toggle(href="" data-toggle="dropdown" id="themes") Admin&nbsp;
+            span.caret
+        ul.dropdown-menu(aria-labelledby="themes")
+            li
+                a(href="#/admin/categories") Categories
+            li
+                a(href="#/admin/category/create") Create Category
+            li
+                a(href="#/admin/users") Users

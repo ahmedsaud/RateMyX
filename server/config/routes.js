@@ -16,7 +16,17 @@ module.exports = function (app) {
     // Category areas
     app.get('/api/categories', controllers.categories.getAllCategories);
     app.get('/api/categories/:name', controllers.votes.getVotesByCategoryName);
-    app.post('/api/categories', auth.isInRole('admin'), controllers.categories.createCategory);
+    app.post('/api/categories', controllers.categories.createCategory);
+
+    // Like areas
+    app.post('/api/likes', auth.isAuthenticated, controllers.likes.makeLike);
+
+    // Comment areas
+    app.post('/api/comments', auth.isAuthenticated, controllers.comments.createComment);
+
+    // Hall of fame
+    app.get('/api/hall-of-fame/by-most-likes', controllers.hallOfFame.getVotesByMostLikes);
+
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)

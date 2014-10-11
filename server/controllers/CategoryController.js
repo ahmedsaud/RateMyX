@@ -17,6 +17,7 @@ module.exports = {
         Category.find({}).exec(function (error, collection) {
             if (error) {
                 console.log('Categories could not be loaded: ' + error);
+                return;
             }
 
             res.send(collection);

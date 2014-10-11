@@ -48,7 +48,7 @@ app.controller('CreateVoteController', function ($scope, $routeParams, $location
         var voteModel = {
             category: vote.category,
             pictureUrl: imageUrl,
-            question: vote.question
+            description: vote.description
         };
 
         VoteService.createVote(voteModel)

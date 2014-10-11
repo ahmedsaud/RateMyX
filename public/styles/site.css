@@ -51,7 +51,7 @@ div.col-md-3 {
 }
 
 .img-container {
-    height: 200px;
+    height: 260px;
     overflow: hidden;
 }
 
@@ -101,6 +101,10 @@ p.well {
 
 .btn-vote-down:hover {
     color: red;
+}
+
+.list-group-item {
+    padding: 5px 15px;
 }
 
 .menu {
@@ -162,6 +166,10 @@ input.ng-dirty.ng-valid.validity {
 
 table thead tr th {
     text-align: center;
+}
+
+.pull-right button {
+    margin-right: 5px;
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {

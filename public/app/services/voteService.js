@@ -1,38 +1,23 @@
 app.factory('VoteService', function ($q, $http) {
     'use strict';
 
-    function postJson(url, data) {
-        data = data || {};
-        var deferred = $q.defer();
-
-        $http.post(url, data).success(function (response) {
-            if (response.success) {
-                deferred.resolve(response);
-            }
-            else {
-                deferred.resolve(false);
-            }
-        });
-
-        return deferred.promise;
-    }
-
-    function getJson(url) {
-        var deferred = $q.defer();
-
-        $http.get(url).success(function (response) {
-            if (response.success) {
-                deferred.resolve(response);
-            }
-            else {
-                deferred.resolve(false);
-            }
-        });
-
-        return deferred.promise;
-    }
-
     return {
+        getUsers: function () {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/users'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        },
         getUserVotes: function () {
             var deferred = $q.defer();
 
@@ -59,6 +44,53 @@ app.factory('VoteService', function ($q, $http) {
 
             return deferred.promise;
         },
+        getVotesByMostLikes: function () {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/api/hall-of-fame/by-most-likes'
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+        makeLike: function (likeData) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/api/likes/',
+                data: likeData
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        },
+        createComment: function (commentData) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                url: '/api/comments/',
+                data: commentData
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        },
         createCategory: function (categoryModel) {
             var deferred = $q.defer();
 
@@ -69,6 +101,9 @@ app.factory('VoteService', function ($q, $http) {
             })
                 .success(function (data) {
                     deferred.resolve(data);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
                 });
 
             return deferred.promise;

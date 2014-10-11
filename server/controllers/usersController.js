@@ -28,7 +28,7 @@ module.exports = {
     updateUser: function (req, res) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var updatedUserData = req.body;
-            if (updatedUserData.password && updatedUserData.password.length > 5) {
+            if (updatedUserData.password && updatedUserData.password.length > 2) {
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
             }
