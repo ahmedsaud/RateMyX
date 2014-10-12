@@ -6,7 +6,9 @@
                 tr
                     th Username
                     th Roles
+                    th №
             tbody
                 tr(ng-repeat="user in users")
+                    td {{ $index + 1 }}
                     td {{ user.username }}
                     td {{ user.roles }}
