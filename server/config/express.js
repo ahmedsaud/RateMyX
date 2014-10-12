@@ -5,6 +5,8 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport');
 
+var cacheTime = 86400000 * 7; // 7 days
+
 module.exports = function (app, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
@@ -24,5 +26,5 @@ module.exports = function (app, config) {
 
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static(config.rootPath + '/public'));
+    app.use(express.static(config.rootPath + '/public', { maxAge: cacheTime }));
 };
