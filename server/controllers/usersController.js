@@ -42,7 +42,7 @@ module.exports = {
         }
     },
     getAllUsers: function (req, res) {
-        User.find({}).exec(function (error, collection) {
+        User.find({}, { '_id': 1, 'username': 1, 'roles': 1 }).exec(function (error, collection) {
             if (error) {
                 res.status(400);
                 return res.send({ reason: error.toString() });

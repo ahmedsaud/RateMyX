@@ -22,7 +22,7 @@ module.exports = {
         });
     },
     getAllVotes: function (req, res, next) {
-        Vote.find({}).exec(function (error, collection) {
+        Vote.find({}, { 'category': 1, '_id': 1, 'pictureUrl': 1 }).exec(function (error, collection) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
                 return next(error);
@@ -69,7 +69,7 @@ module.exports = {
         })
     },
     getVotesByCategoryName: function (req, res, next) {
-        Vote.find({ category: req.params.name }).exec(function (error, collection) {
+        Vote.find({ category: req.params.name }, { 'category': 1, '_id': 1, 'pictureUrl': 1 }).exec(function (error, collection) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
                 return next(error);
@@ -94,7 +94,7 @@ module.exports = {
     getUserVotes: function (req, res, next) {
         var userId = req.user._id;
 
-        Vote.find({ userId: userId }).exec(function (error, collection) {
+        Vote.find({ userId: userId }, { 'category': 1, '_id': 1, 'pictureUrl': 1 }).exec(function (error, collection) {
             if (error) {
                 console.log('Votes could not be loaded: ' + error);
                 return next(error);

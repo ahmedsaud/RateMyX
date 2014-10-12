@@ -16,7 +16,11 @@ module.exports = {
                     return next(error);
                 }
 
-                res.send({success: true, user: user});
+                res.send({success: true, user: {
+                    username: user.username,
+                    roles: user.roles,
+                    _id: user._id
+                }});
             })
         });
 

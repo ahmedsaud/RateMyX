@@ -180,6 +180,14 @@ table thead tr th {
     text-align: center;
 }
 
+button.btn[type="submit"]:disabled {
+    pointer-events: auto;
+}
+
+button.btn[type="submit"]:disabled:hover {
+    cursor: not-allowed;
+}
+
 .vote-buttons-container {
     margin-left: 5px;
     margin-right: 3px;

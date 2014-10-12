@@ -3,7 +3,7 @@ var auth = require('../config/auth'),
 
 module.exports = {
     getVotesByMostLikes: function (req, res, next) {
-        Vote.find({}, null, { sort: { likes: -1 }, skip: 0, limit: 4 }, function (error, collection) {
+        Vote.find({}, { 'category': 1, '_id': 1, 'pictureUrl': 1 }, { sort: { likes: -1 }, skip: 0, limit: 4 }, function (error, collection) {
             if (error) {
                 console.log('Failed to load the vote: ' + error);
                 return next(error);
