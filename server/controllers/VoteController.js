@@ -87,7 +87,19 @@ module.exports = {
                     return next(error);
                 }
 
-                res.send(collection);
+                var voteId = collection[0]._id;
+                Like.findOne({voteId: voteId, userId: req.user._id}).exec(function (error, like) {
+                    if (error) {
+                        console.log('Like could not be loaded: ' + error);
+                        return next(error);
+                    }
+
+                    if (like) {
+                        collection[0].isCurrentUserVotted = true;
+                    }
+
+                    res.send(collection);
+                });
             })
         });
     },
